@@ -50,13 +50,13 @@
                         <span class="ng-scope">分类</span>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="${ctx}/manager/product/getproduct.action">
+                        <a class="J_menuItem" href="${ctx}/product/getproduct.action">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">商品列表</span>
                         </a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="${ctx}/manager/user/getUserpage.action">
+                        <a class="J_menuItem" href="${ctx}/user/getUserpage.action">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">用户</span>
                         </a>

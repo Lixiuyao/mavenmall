@@ -101,7 +101,7 @@
 				console.log(data.value); //得到被选中的值
 				console.log(data.othis); //得到美化后的DOM对象
 				$.ajax({
-					url:'${ctx}/manager/catergory/selectSecondCategory.action',
+					url:'${ctx}/catergory/selectSecondCategory.action',
 					data : 'topCategoryId=' + data.value,
 					dataType:'json',
 					type:'POST',
@@ -127,7 +127,7 @@
 		$(function(){
 			//加载一级菜单
 			$.ajax({
-				url:"${ctx}/manager/catergory/selectTopCategory.action",
+				url:"${ctx}/catergory/selectTopCategory.action",
 				dataType:'json',
 				success:function(data){
 					console.log(data);
@@ -153,7 +153,7 @@
 			//	return;
 			//}
 			$('#form_add').ajaxSubmit({
-				url:'${ctx}/manager/upload/uploadPic.action',
+				url:'${ctx}/upload/uploadPic.action',
 				type:'POST',
 				dataType:'json',
 				success:function(data){
@@ -164,14 +164,14 @@
 		};
 		function submitForm(){
 			$.ajax({
-				url:'${ctx}/manager/product/add.action',
+				url:'${ctx}/product/add.action',
 				data:$('#form_add').serialize(),
 				type:'POST',
 				dataType:'json',
 				success : function(jsonObj) {
 					if(jsonObj.code == util.SUCCESS) {
 						//mylayer.success(jsonObj.msg);
-						mylayer.confirm("添加成功，是够跳转到商品列表界面？", "${ctx}/manager/product/getproduct.action");
+						mylayer.confirm("添加成功，是够跳转到商品列表界面？", "${ctx}/product/getproduct.action");
 					} else {
 						mylayer.errorMsg(jsonObj.msg);
 					}
@@ -191,7 +191,7 @@
             		  //指定上传文件参数名称
                     filePostName  : "pictureFile",
                     //指定上传文件请求的url。
-                    uploadJson : '${ctx}/manager/upload/multPicUpload.action',
+                    uploadJson : '${ctx}/upload/multPicUpload.action',
                     //上传类型，分别为image、flash、media、file
                     dir : "image",
                     afterBlur: function () { this.sync(); }

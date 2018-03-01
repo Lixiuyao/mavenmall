@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.situ.mall.conmon.response.ServerResponse;
 import com.situ.mall.core.service.ICategoryService;
 @Controller
-@RequestMapping("/manager/catergory")
+@RequestMapping("/catergory")
 public class CatergoryManagerController {
 	@Autowired
 	private ICategoryService categoryService;

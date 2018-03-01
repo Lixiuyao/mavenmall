@@ -39,7 +39,7 @@
 		  var table = layui.table;
 		  table.render({
 		    elem: '#datagrid', //要渲染哪个表格
-		    url:'${ctx}/manager/user/pageList.action', //异步数据接口
+		    url:'${ctx}/user/pageList.action', //异步数据接口
 		    cellMinWidth: 50, //列宽自动分配，全局定义常规单元格的最小宽度
 		    cols: [[
 		            {type:'checkbox'},

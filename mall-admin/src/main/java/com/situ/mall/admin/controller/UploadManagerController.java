@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.situ.mall.conmon.until.JsonUtils;
 
 @Controller
-@RequestMapping("/manager/upload")
+@RequestMapping("/upload")
 public class UploadManagerController {
 	
 	@RequestMapping(value="/uploadPic",method=RequestMethod.POST)
