@@ -9,6 +9,14 @@ public interface IUserService {
 
 	ServerResponse<User> login(String username, String password);
 
-	ServerResponse<List<User>> pageList(Integer page, Integer limit);
+	ServerResponse<List<User>> pageList(Integer page, Integer limit, User user);
+
+	ServerResponse deleteById(Integer id);
+
+	ServerResponse add(User user);
+
+	ServerResponse deleteAll(String ids);
+
+	ServerResponse update(User user);
 	
 }

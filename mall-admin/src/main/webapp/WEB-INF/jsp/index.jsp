@@ -42,7 +42,7 @@
                                 </span>
                             </a>
                         </div>
-                        <div class="logo-element">hAdmin
+                        <div class="logo-element">管理员
                         </div>
            
                     </li>
@@ -59,6 +59,12 @@
                         <a class="J_menuItem" href="${ctx}/user/getUserpage.action">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">用户</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="${ctx}/category/getcategorypage.action">
+                            <i class="fa fa-home"></i>
+                            <span class="nav-label">商品分类</span>
                         </a>
                     </li>
                     <li>

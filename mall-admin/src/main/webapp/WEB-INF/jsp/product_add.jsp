@@ -170,7 +170,7 @@
 				dataType:'json',
 				success : function(jsonObj) {
 					if(jsonObj.code == util.SUCCESS) {
-						//mylayer.success(jsonObj.msg);
+						
 						mylayer.confirm("添加成功，是够跳转到商品列表界面？", "${ctx}/product/getproduct.action");
 					} else {
 						mylayer.errorMsg(jsonObj.msg);

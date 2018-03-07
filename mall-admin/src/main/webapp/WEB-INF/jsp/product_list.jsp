@@ -79,7 +79,7 @@
 			    	  where: {
 				            name: $('#SearchName').val(),
 				          subtitle: $('#SearchSubtitle').val(),
-				         
+				          status: $('#SearchStatus').val()
 				        },
 				       // page: {
 				      //    curr: 1 //重新从第 1 页开始

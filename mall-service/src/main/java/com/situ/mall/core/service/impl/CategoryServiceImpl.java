@@ -36,5 +36,22 @@ public class CategoryServiceImpl implements ICategoryService{
 		
 		return categoryMapper.selectParentCategoryId(categoryId);
 	}
+	@Override
+	public ServerResponse add(Category category) {
+		int count = categoryMapper.insert(category);
+		if (count>0) {
+			return ServerResponse.createSuccess("新增成功");
+		}
+		return ServerResponse.createError("新增失败");
+	}
+	@Override
+	public List<Category> selectTopCategoryList() {
+		return categoryMapper.selectTopCategory();
+	}
+	@Override
+	public List<Category> selectSecondCategoryList() {
+		return categoryMapper.selectSecondCategorys();
+	}
+	
 	
 }

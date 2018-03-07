@@ -18,5 +18,7 @@ public interface IProductService {
 	Product selectById(Integer id);
 
 	ServerResponse update(Product product);
+
+	List<Product> selectBycategoryId(Integer categoryId);
 	
 }

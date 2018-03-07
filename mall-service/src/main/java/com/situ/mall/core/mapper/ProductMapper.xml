@@ -190,6 +190,16 @@
 	  	<if test="subtitle!=null">
 	  		and subtitle like concat('%',#{subtitle},'%')
 	  	</if>
+	  	<if test="status!=null">
+	  		and status=#{status}
+	  	</if>
   	</where>
+  </select>
+
+   <select id="selectBycategoryId" parameterType="int" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where category_id = #{categoryId}
   </select>
 </mapper>

@@ -35,8 +35,8 @@
       update_time)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER},now(),now()
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.situ.mall.core.entity.User" >
     insert into user
@@ -159,8 +159,27 @@
   	select <include refid="Base_Column_List"/> from user where  username=#{username}
     and password=#{password}
   </select>
-  <select id="pageList" resultMap="BaseResultMap">
+  <select id="pageList" parameterType="user"   resultMap="BaseResultMap">
   	select <include refid="Base_Column_List"/> from user 
+  	<where>
+  		<if test="username!=null">
+  			and username like concat('%',#{username},'%')
+  		</if>
+	  	<if test="phone!=null">
+	  		and phone like concat('%',#{phone},'%')
+	  	</if>
+	  	<if test="email!=null">
+	  		and email like concat('%',#{email},'%')
+	  	</if>
+  	</where>
   </select>
+
+   <delete id="deleteAll">
+    delete from user
+    where id in
+    <foreach collection="array" item="id" open="(" close=")" separator=",">
+    	#{id}
+    </foreach>
+  </delete>
   
 </mapper>

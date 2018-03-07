@@ -19,7 +19,7 @@ public class ProductServiceImpl implements IProductService {
 	public ServerResponse<List<Product>> pageList(Integer page, Integer limit,Product product) {
 		//1.设置分页
 		PageHelper.startPage(page,limit);
-		
+		System.out.println(product.getStatus());
 		List<Product> list = productMapper.pageList(product);
 		//第二种分页
 		PageInfo pageInfo = new PageInfo<>(list);
@@ -65,6 +65,11 @@ public class ProductServiceImpl implements IProductService {
 			return ServerResponse.createSuccess("更新商品成功");
 		}
 		return ServerResponse.createError("更新商品失败");
+	}
+	@Override
+	public List<Product> selectBycategoryId(Integer categoryId) {
+		List<Product> list = productMapper.selectBycategoryId(categoryId);
+		return list;
 	}
 
 }

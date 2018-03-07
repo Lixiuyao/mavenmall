@@ -20,4 +20,6 @@ public interface ProductMapper {
 	List<Product> pageList(Product product);
 
 	int deleteAll(String[] idsArray);
+
+	List<Product> selectBycategoryId(Integer categoryId);
 }
