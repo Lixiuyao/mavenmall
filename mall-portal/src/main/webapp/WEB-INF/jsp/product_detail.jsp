@@ -850,15 +850,47 @@
 		</div>
 	</body>
 <script type="text/javascript">
+		layui.use(['layer'],function(){
+			var layer = layui.layer;
+			
+			layer.msg("Hello");
+		});
 	function addCart(){
-		window.location.href="${ctx}/cart/getCartPage.shtml?productId=${product.id}&amount="+$("#amount").val();
+		//window.location.href="${ctx}/cart/getCartPage.shtml?productId=${product.id}&amount="+$("#amount").val();
+		$.ajax({
+			url : '${ctx}/cart/addOrUpdateCart.shtml',
+			data:{'productId':'${product.id}','amount':$("#amount").val(),'isChecked':true},
+			type:'POST',
+			success:function(jsonObj){
+				if(jsonObj.code == util.SUCCESS){
+					mylayer.successUrl(jsonObj.msg,'${ctx}/cart/getCartPage.shtml');
+					
+				}else{
+					mylayer.errorMsg(jsonObj.msg)
+				}
+				
+			}
+				
+		});
 	}
 	function cal(oper){
-		var  nam = document.getElementsById("amount").value;
+		var  nam = document.getElementById("amount").value;
+		
 		switch(oper){
+			case '-':
+				--nam;
+				break;
+			case '+':
+				++nam;
+				break;
 			
+		}	
+		if(nam>0){
+			$('#amount').val(nam);
+		}else{
+			alert('0件不能购买');
 		}
-		alert(nam);
+		
 	}
 	
 </script>
