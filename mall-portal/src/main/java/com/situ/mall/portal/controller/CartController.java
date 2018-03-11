@@ -155,7 +155,6 @@ public class CartController {
 			}
 			
 		}
-		
 		setCartVoToCookie(response, cartVo);
 		
 		return ServerResponse.createSuccess("删除购物车成功");

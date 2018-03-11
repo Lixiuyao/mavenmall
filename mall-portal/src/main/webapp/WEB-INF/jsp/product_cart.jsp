@@ -24,7 +24,7 @@
 				<div class="right">
 					<ul>
 						<li>
-							<a class="login" href="${ctx}/" target="_blank">请登录</a>
+							<a class="login" href="${ctx}/login.shtml" target="_blank">请登录</a>
 						</li>
 						<li>
 							<a href="register.html" target="_blank">快速注册</a>
@@ -77,7 +77,7 @@
 			<div class="title_center">
 				<ul style="color: #666666;margin-top: 10px;margin-bottom: 10px;">
 					<li style="margin-left: 16px;margin-right: 8px;">
-						<input checked id="allCheck" type="checkbox" onclick="selectAllPrice()"  />
+						<input  id="allCheck" type="checkbox" onclick="selectAllPrice()"  />
 					</li>
 					<li style="margin-left: 8px;margin-right: 38px;">全选</li>
 					<li style="margin-left: 38px;margin-right: 168px;">商品</li>
@@ -88,7 +88,7 @@
 				</ul>
 			</div>
 			<div class="title_bottom">
-			<input checked id="allCheck" type="checkbox" onclick="selectAllPrice()"  style="color: #666666;margin: 23px 11px 10px 22px;" />
+			<input   type="checkbox"  style="color: #666666;margin: 23px 11px 10px 22px;" />
 			<img src="${ctx}/static/front/img/156.png" style="margin: 0px 142px 0px 11px; " />
 			<img src="${ctx}/static/front/img/157.png" style="margin-left: 142px; " />
 		</div>
@@ -164,10 +164,10 @@
 		<div class="total">
 				<ul style="color: #666666;margin-top: 10px;margin-bottom: 10px;">
 					<li style="margin-left: 16px;margin-right: 8px;">
-						<input  checked id="allCheck" type="checkbox" onclick="selectAllPrice()" />
+						<input  type="checkbox"  />
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
-					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span id="totalPrice" style="color: #F41443;">￥0.00</span></li>
+					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span id="totalPrice" style="color: #F41443;">0.00</span></li>
 					<li class="total_right"><a onclick="toAddOrder()">立即结算</a></li>
 				</ul>
 			</div>
@@ -380,6 +380,17 @@
 			});
 			$(function(){
 				refreshTotalPrice();
+				var checkboxs = $('input[name=selectCheckbox]');
+				//alert(checkboxs.length);
+				var checked =  $('input[name=selectCheckbox]:checked');
+				//alert(checked.length);
+				if(checkboxs.length == checked.length){
+					 $('#allCheck').prop('checked',true);
+				}else{
+					 $('#allCheck').prop('checked',false);
+			
+				}
+				
 			});
 		function addOrsub(productId,operater){
 			var delta;
@@ -426,6 +437,14 @@
 				success :function(jsonObj){
 					if(jsonObj.code == util.SUCCESS){
 						refreshTotalPrice();
+						var checkboxs = $('input[name=selectCheckbox]');
+						var checked =  $('input[name=selectCheckbox]:checked');
+						if(checkboxs.length == checked.length){
+							 $('#allCheck').prop('checked',true);
+						}else{
+							 $('#allCheck').prop('checked',false);
+					
+						}
 					}else{
 						mylayer.errMsg(jsonObj.msg);
 					}
@@ -459,6 +478,14 @@
 								//在dom页面将CartItem项移除
 								$('#checkbox'+productId).parent().parent().parent().remove();
 								refreshTotalPrice();
+								var checkboxs = $('input[name=selectCheckbox]');
+								var checked =  $('input[name=selectCheckbox]:checked');
+								if(checkboxs.length == checked.length){
+									 $('#allCheck').prop('checked',true);
+								}else{
+									 $('#allCheck').prop('checked',false);
+							
+								}
 							}else{
 								mylayer.errMsg(jsonObj.msg);
 							}
@@ -470,28 +497,38 @@
 		}
 		function selectAllPrice(){
 			var isChecked = $('#allCheck').prop('checked');
-			$.ajax({
-				url:'${ctx}/cart/selectAllPrice.shtml',
-				data:{'isChecked':isChecked},
-				type:'POST',
-				dataType:'json',
-				success:function(jsonObj){
-					if(jsonObj.code == util.SUCCESS){
-						mylayer.success(jsonObj.msg);
-						
-						refreshTotalPrice();
-						
-						
-					}else{
-						mylayer.errMsg(jsonObj.msg);
+			$("input[name=selectCheckbox]").prop("checked",$("#allCheck").is(":checked"));
+				$.ajax({
+					url:'${ctx}/cart/selectAllPrice.shtml',
+					data:{'isChecked':isChecked},
+					type:'POST',
+					dataType:'json',
+					success:function(jsonObj){
+						if(jsonObj.code == util.SUCCESS){
+							//mylayer.success(jsonObj.msg);
+							refreshTotalPrice();
+							
+						}else{
+							mylayer.errMsg(jsonObj.msg);
+						}
 					}
-				}
-			});
+				});
+				
+			
 			
 		}
 		
 		
 		function toAddOrder(){
+			var checked =  $('input[name=selectCheckbox]:checked');
+			
+			if(checked.length==0){
+				alert("您还没有选中商品")
+				
+				return;
+			}
+			
+			
 			var user = '${user}';
 			if(user==''){
 				layer.open({
