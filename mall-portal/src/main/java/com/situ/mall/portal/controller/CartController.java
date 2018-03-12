@@ -30,7 +30,7 @@ import com.situ.mall.portal.vo.CartVo;
 @Controller
 @RequestMapping("/cart")
 public class CartController {
-	private String CART_COOKIE = "cart_cookie";
+	private  String CART_COOKIE = "cart_cookie";
 	
 	@Autowired
 	private IProductService productService; 
@@ -73,7 +73,6 @@ public class CartController {
 			product.setId(productId);
 			product.setStock(productTemp.getStock());
 			cartItemVo.setProduct(product);
-			//???
 			cartItemVo.setIsChecked(Const.CartChecked.UNCHECKD);
 			cartItemVo.setAmount(amount);
 			cartVo.addItem(cartItemVo);
@@ -105,7 +104,6 @@ public class CartController {
 			product.setId(productId);
 			product.setStock(productTemp.getStock());
 			cartItemVo.setProduct(product);
-			//???
 			cartItemVo.setIsChecked(Const.CartChecked.UNCHECKD);
 			cartItemVo.setAmount(amount);
 			cartVo.addItem(cartItemVo);
@@ -134,7 +132,6 @@ public class CartController {
 		//将CartVo对象设置到Cookie中
 		setCartVoToCookie(response, cartVo);
 		return ServerResponse.createSuccess("添加购物车成功");
-		
 	}
 	
 	
@@ -203,6 +200,7 @@ public class CartController {
 					if (newAmount>productTemp.getStock()) {
 						return false;
 					}
+					item.setAmount(newAmount);
 				}
 				if (isChecked != null) {
 					if (isChecked) {
@@ -256,7 +254,7 @@ public class CartController {
 	}
 	
 	
-	private CartVo getCartVoFromCookie(HttpServletRequest request) {
+	public  CartVo getCartVoFromCookie(HttpServletRequest request) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		// 只有对象中不为null才转换
 		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

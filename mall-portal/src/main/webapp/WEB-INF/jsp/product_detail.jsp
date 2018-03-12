@@ -888,7 +888,7 @@
 		if(nam>0){
 			$('#amount').val(nam);
 		}else{
-			alert('0件不能购买');
+			layer.msg('商品数量不能低于0件哦', {icon: 5});
 		}
 		
 	}

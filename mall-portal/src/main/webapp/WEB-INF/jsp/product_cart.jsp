@@ -24,7 +24,7 @@
 				<div class="right">
 					<ul>
 						<li>
-							<a class="login" href="${ctx}/login.shtml" target="_blank">请登录</a>
+							<a class="login" href="${ctx}/tologin.shtml" target="_blank">请登录</a>
 						</li>
 						<li>
 							<a href="register.html" target="_blank">快速注册</a>
@@ -77,7 +77,7 @@
 			<div class="title_center">
 				<ul style="color: #666666;margin-top: 10px;margin-bottom: 10px;">
 					<li style="margin-left: 16px;margin-right: 8px;">
-						<input  id="allCheck" type="checkbox" onclick="selectAllPrice()"  />
+						<input   type="checkbox"  />
 					</li>
 					<li style="margin-left: 8px;margin-right: 38px;">全选</li>
 					<li style="margin-left: 38px;margin-right: 168px;">商品</li>
@@ -88,7 +88,7 @@
 				</ul>
 			</div>
 			<div class="title_bottom">
-			<input   type="checkbox"  style="color: #666666;margin: 23px 11px 10px 22px;" />
+			<input  style="color: #666666;margin: 23px 11px 10px 22px;" />
 			<img src="${ctx}/static/front/img/156.png" style="margin: 0px 142px 0px 11px; " />
 			<img src="${ctx}/static/front/img/157.png" style="margin-left: 142px; " />
 		</div>
@@ -164,11 +164,12 @@
 		<div class="total">
 				<ul style="color: #666666;margin-top: 10px;margin-bottom: 10px;">
 					<li style="margin-left: 16px;margin-right: 8px;">
-						<input  type="checkbox"  />
+						
+						<input  id="allCheck" type="checkbox" onclick="selectAllPrice()"  />
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
 					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span id="totalPrice" style="color: #F41443;">0.00</span></li>
-					<li class="total_right"><a onclick="toAddOrder()">立即结算</a></li>
+					<li class="total_right" id="total_right"><a onclick="toAddOrder()">立即结算</a></li>
 				</ul>
 			</div>
 					<div class="sp">
@@ -357,7 +358,7 @@
 						账号<input id="username" name="username" type="text" placeholder="用户名/邮箱/手机号">
 					</div>
 					<div class="pc-sign" style="margin-left:70px">
-						密码<input id="username" name="password"    type="password" placeholder="请输入您的密码">
+						密码<input id="password" name="password"    type="password" placeholder="请输入您的密码">
 					</div>
 					<div class="pc-submit-ss" style="margin-left:90px">
 						<input type="button" value="登录" onclick="login()">
@@ -523,13 +524,18 @@
 			var checked =  $('input[name=selectCheckbox]:checked');
 			
 			if(checked.length==0){
-				alert("您还没有选中商品")
-				
+				//alert("您还没有选中商品")
+				//layer.confirm("您还没有选中商品"),
+			// layer.msg('您还没有选中商品', {icon: 5});
+				 layer.tips('您还没有选中商品', '#total_right', {
+					  tips: [1, '#030303'],
+					  time: 2500
+					}); 
 				return;
 			}
 			
 			
-			var user = '${user}';
+			var user = '${CURRENT_USER}';
 			if(user==''){
 				layer.open({
 					type:1,
@@ -540,7 +546,7 @@
 				});
 			}
 			else{
-				window.location.href = '${ctx}/order/getOrderPage。shtml';
+				window.location.href = '${ctx}/order.shtml';
 			}
 		}
 		function login(){
@@ -572,13 +578,14 @@
     		}
     		//3.ajax提交用户名和密码，并接受后台返回的json数据
     		$.ajax({
-    			url:"${ctx}/user/login.action",
+    			url:"${ctx}/Glogin.shtml",
     			type:"POST",
     			dataType:"json",
     			data:$("#login-form").serialize(),
     			success:function(data){
     				if(data.code==util.SUCCESS){
-    					window.location.href = '${ctx}/order/getOrderPage。shtml';
+    					window.location.href = '${ctx}/order.shtml';
+    					
     				}else{
     					mylayer.errorMsg(data.msg);
     				}

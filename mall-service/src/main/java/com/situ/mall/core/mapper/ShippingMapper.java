@@ -10,8 +10,11 @@ public interface ShippingMapper {
     int insertSelective(Shipping record);
 
     Shipping selectByPrimaryKey(Integer id);
-
+    
+    Shipping selectByPrimaryUserKey(Integer id);
+    
     int updateByPrimaryKeySelective(Shipping record);
 
     int updateByPrimaryKey(Shipping record);
+    
 }

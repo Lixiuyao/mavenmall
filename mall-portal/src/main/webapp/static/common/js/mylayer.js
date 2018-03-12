@@ -38,6 +38,7 @@ var mylayer = {
 	confirm : function(contents, url) {
 		layer.confirm(
 			contents,
+			
 			function(index) {
 				console.log("点击了确定");
 				location.href = url;
