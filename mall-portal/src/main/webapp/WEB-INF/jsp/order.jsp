@@ -24,7 +24,7 @@
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来靓淘<a href="login.html" target="_blank">${user.username}</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >您好！，欢迎来靓淘<a href="login.html" target="_blank" id="user" value="${user.id}">${user.username}</a> <a href="register.html" target="_blank"> 免费注册</a></div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -356,7 +356,7 @@
 										
 										<c:forEach items="${cartVo.cartItemVos}" var="cartitem">
 										<c:if test="${cartitem.isChecked==1}">
-										<dd class="item clearfix">
+										<dd class="item clearfix"  name="num"  id="${cartitem.product.id}" >
 											<div class="item-row">
 												<div class="col col-1">
 													<div class="g-pic">
@@ -369,9 +369,9 @@
 													</div>
 												</div>
 										
-												<div class="col col-2">${cartitem.product.price}元</div>
-												<div class="col col-3">${cartitem.amount}</div>
-												<div class="col col-4">${cartitem.product.price*cartitem.amount}元</div>
+												<div class="col col-2" >${cartitem.product.price}元</div>
+												<div class="col col-3" >${cartitem.amount}</div>
+												<div class="col col-4" id="sprice${cartitem.product.id}">${cartitem.product.price*cartitem.amount}元</div>
 											</div>
 										</dd>
 										</c:if>
@@ -388,7 +388,7 @@
 											<ul>
 
 												<li>
-													订单总额：<span>${sum}元</span>
+													订单总额：<span  id="totalTwoPrice">244元</span>
 												</li>
 												<li>
 													活动优惠：<span>-0元</span>
@@ -404,9 +404,9 @@
 													运费：<span id="postageDesc">0元</span>
 												</li>
 											</ul>
-											<p class="checkout-total">应付总额：<span><strong id="totalPrice">${sum}</strong>元</span></p>
+											<p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
 										</div>
-										<!--  -->
+										
 									</div>
 								</div>
 							</div>
@@ -444,7 +444,7 @@
 						<div class="checkout-confirm">
 
 							<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-							<a href="my-apy.html" class="btn btn-primary">立即下单</a>
+							<a class="btn btn-primary" onclick="addOrder()">立即下单</a>
 
 						</div>
 					</div>
@@ -629,7 +629,22 @@
         $(this).find(".nav a").removeClass("hover");
     })
 </script>
+<script type="text/javascript">
+		var count = $('dd[name=num]');
+		//alert(count.length);
+		var totalprice=0.00;
+		for(var i=0;i<count.length;i++){
+			var id = count[i].getAttribute('id');
+			var cartitems = $('#sprice'+id).html();
+			totalprice +=parseFloat(cartitems);
+		}
+		 $('#totalPrice').html(totalprice);
+		 $('#totalTwoPrice').html(totalprice)
+		function addOrder() {
+   			 window.location.href="${ctx}/cart/getCartPage.shtml?userId="+$("#user").val();
+		}
 
+</script>
 
 </body>
 </html>

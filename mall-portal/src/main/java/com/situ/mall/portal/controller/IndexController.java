@@ -61,18 +61,18 @@ public class IndexController {
 		//将CartItemVo里面的Product填满信息，因为现在只有一个id
 		List<CartItemVo> cartItemVos = cartVo.getCartItemVos();
 		for (CartItemVo cartItemVo : cartItemVos) {
-			if(cartItemVo.getIsChecked()==1){
+			//if(cartItemVo.getIsChecked()==1){
 				Product product = productService.selectById(cartItemVo.getProduct().getId());
-				System.out.println(product);
+			//	System.out.println(product);
 				cartItemVo.setProduct(product);
-				BigDecimal price = product.getPrice();
-				Integer amount = cartItemVo.getAmount();
-				sum+=price.doubleValue()*amount;
-			}
+			//	BigDecimal price = product.getPrice();
+			//	Integer amount = cartItemVo.getAmount();
+			//	sum+=price.doubleValue()*amount;
+		//	}
 			
 		}
 		model.addAttribute("cartVo", cartVo);
-		model.addAttribute("sum", sum);
+		//model.addAttribute("sum", sum);
 		
 		return "order";
 	}
