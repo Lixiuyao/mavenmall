@@ -25,7 +25,7 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="banner">
-			<img class="banner_img" src="${ctx}/static/front/css/${ctx}/static/front/css/img/beijing.png" />
+			<img class="banner_img" src="${ctx}/static/front/css/img/beijing.png" />
 			<div class="banner_center">
 				<div class="login">
 					<form>

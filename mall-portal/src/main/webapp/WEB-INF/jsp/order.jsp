@@ -235,7 +235,7 @@
 										<li class="item selected">
 											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
 											<p>
-												在线支付   <span  name= 'paymentType' value="1" ></span>
+												在线支付   <span  id="paymentType" name= 'paymentType'  value="1" ></span>
 											</p>
 										</li>
 									</ul>
@@ -401,7 +401,7 @@
 													优惠券抵扣：<span id="couponDesc">-0元</span>
 												</li>
 												<li>
-													运费：<span id="postageDesc">0元</span>
+													运费：<span id="postage" value="0">0元</span>
 												</li>
 											</ul>
 											<p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
@@ -630,6 +630,9 @@
     })
 </script>
 <script type="text/javascript">
+		layui.use(['layer'],function(){
+			var layer = layui.layer;
+		});
 		var count = $('dd[name=num]');
 		//alert(count.length);
 		var totalprice=0.00;
@@ -640,8 +643,21 @@
 		}
 		 $('#totalPrice').html(totalprice);
 		 $('#totalTwoPrice').html(totalprice)
+	
 		function addOrder() {
-   			 window.location.href="${ctx}/cart/getCartPage.shtml?userId="+$("#user").val();
+   			$.ajax({
+   				url:'${ctx}/order/addOrder.shtml',
+   				data:{'shippingId':'${shipping.id}','totalprice':$("#totalPrice").html()},
+   				dataType:'json',
+   				type:"POST",
+   				success:function(data){
+   					if(data.code== util.SUCCESS){
+   						window.location.href = '${ctx}/order/getpay.shtml';
+   						//mylayer.successUrl(data.msg,'${ctx}/order/getpay.shtml');
+   					}           
+   					
+   				}
+   			});
 		}
 
 </script>

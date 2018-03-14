@@ -863,6 +863,7 @@
 			type:'POST',
 			success:function(jsonObj){
 				if(jsonObj.code == util.SUCCESS){
+					
 					mylayer.successUrl(jsonObj.msg,'${ctx}/cart/getCartPage.shtml');
 					
 				}else{
@@ -874,6 +875,8 @@
 		});
 	}
 	function cal(oper){
+		var sum = '${product.stock}';
+		
 		var  nam = document.getElementById("amount").value;
 		
 		switch(oper){
@@ -885,9 +888,12 @@
 				break;
 			
 		}	
-		if(nam>0){
+		if(nam>sum){
+			layer.msg('不能超过最大库存', {icon: 5});
+			
+		}else if(nam>0){
 			$('#amount').val(nam);
-		}else{
+		}else {
 			layer.msg('商品数量不能低于0件哦', {icon: 5});
 		}
 		

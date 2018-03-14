@@ -9,7 +9,11 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
+ 
+ <!-- 设置session时间 -->
+  <session-config>
+	<session-timeout>60</session-timeout>
+  </session-config>
   <!-- 配置Spring -->
   <context-param>
   		<param-name>contextConfigLocation</param-name>

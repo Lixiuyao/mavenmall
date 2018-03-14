@@ -69,7 +69,6 @@
 			<c:forEach items="${list}" var="product">
 	         <li class="li" style="border-bottom: 5px solid rgb(234, 234, 234);">
 								<div class="sbox">
-								
 									<a href="${ctx}/product/getProductDetail.shtml?productId=${product.id}"><img src="/pic/${product.mainImage}" height="200" width="200"></a>
 									<a href="${ctx}/product/getProductDetail.shtml?productId=${product.id}" title="" class="name">
 									 <c:if test="${fn:length(product.name)>15}">
