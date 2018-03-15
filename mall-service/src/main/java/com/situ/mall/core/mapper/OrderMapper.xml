@@ -19,10 +19,28 @@
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
+  <resultMap type="com.situ.mall.core.entity.Order" id="BaseResultVo">
+ 		<id property="orderNo" column="order_no"/>
+ 		<result property="payment" column="payment"/>
+ 		<result property="createTime" column="create_time"/>
+ 		<!-- collection:将关联查询出的学生信息映射到集合中 -->
+ 		<collection property="orderItems" ofType="com.situ.mall.core.entity.OrderItem">
+ 			<id property="productName" column="product_name"/>
+ 			<result property="productImage" column="product_image"/>
+ 			<result property="currentUnitPrice" column="current_unit_price"/>
+ 			<result property="quantity" column="b.quantity"/>
+ 		</collection>
+ 	</resultMap>
   <sql id="Base_Column_List" >
     id, order_no, user_id, shipping_id, payment, payment_type, postage, status, payment_time, 
     send_time, end_time, close_time, create_time, update_time
   </sql>
+  <select id="selectByUserrId" parameterType="int" resultMap="BaseResultVo">
+  		SELECT o.order_no ,o.create_time,o.payment,
+  		b.product_name,b.product_image,b.current_unit_price,
+  		b.quantity FROM order1 AS o  
+  		INNER JOIN order_item AS b WHERE o.user_id=#{user_id};
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -198,4 +216,11 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order1
+    where user_id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

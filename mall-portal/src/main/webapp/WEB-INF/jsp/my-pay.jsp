@@ -24,10 +24,10 @@
 		<div class="pc-header-con">
 			<div class="fl pc-header-link" >您好！，欢迎来云购物 
 			
-			<a href="login.html" target="_blank">请登录</a>
-			 <a href="register.html" target="_blank"> 免费注册</a></div>
-			 
-			 
+			
+				<a href="login.html" target="_blank">${user.username}</a>
+				 <a href="register.html" target="_blank"> 退出</a></div>
+			
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -86,7 +86,7 @@
 		</div>
 		<div class="fr pc-head-car">
 			<i class="icon-car"></i>
-			<a href="#">我的购物车</a>
+			<a href="${ctx}/cart/getCartPage.shtml">我的购物车</a>
 		</div>
 	</div>
 	<!--  顶部    start-->
@@ -121,7 +121,7 @@
 			<table>
 				<thead>
 					<tr class="tab-0">
-						<th class="tab-1"><input type="checkbox" name="s_all" class="s_all tr_checkmr" id="s_all_h"><label for=""> 全选</label></th>
+						<th class="tab-1"><input type="checkbox" name="s_all" class="s_all tr_checkmr" id="s_all_h"><label for=""> OCK</label></th>
 						<th class="tab-2">商品</th>
 						<th class="tab-3">商品信息</th>
 						<th class="tab-4">单价</th>
@@ -137,13 +137,14 @@
 							<label for="">云购物自营</label>
 							<a href="#" style="position:relative;padding-left:50px"><i class="icon-kefu"></i>联系客服</a>
 							<ul class="clearfix fr" style="padding-right:20px">
-								<li><i class="pc-shop-car-yun"></i>满109元减10</li>
-								<li><i class="pc-shop-car-yun"></i>领取3种优惠券, 最高省30元</li>
+								<li><i class="pc-shop-car-yun"></i>购物多多</li>
+								<li><i class="pc-shop-car-yun"></i>优惠多多</li>
 							</ul>
 						</td>
 					</tr>
 					<tr>
 						<th><input type="checkbox"  style="margin-left:10px; float:left"></th>
+						
 						<th class="tab-th-1">
 							<a href="#"><img src="images/shangpinxiangqing/X1.png" width="100%" alt=""></a>
 							<a href="#" class="tab-title">赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </a>
@@ -164,28 +165,7 @@
 						<th class="red">299.99</th>
 						<th><a href="#">删除</a></th>
 					</tr>
-					<tr>
-						<th><input type="checkbox"  style="margin-left:10px; float:left"></th>
-						<th class="tab-th-1">
-							<a href="#"><img src="images/shangpinxiangqing/X-1.png" width="100%" alt=""></a>
-							<a href="#" class="tab-title">赛亿（shinee)取暖器家用/取暖电器/电暖器/电暖气台式摇头暖风机HN2118PT </a>
-						</th>
-						<th>
-							<p>颜色：黑色</p>
-							<p>规格：落地款</p>
-						</th>
-						<th>
-							<p>399.99</p>
-							<p class="red">299.99</p>
-						</th>
-						<th class="tab-th-2">
-							<span>-</span>
-							<input type="text" value="1" maxlength="3" placeholder="" class="shul">
-							<span>+</span>
-						</th>
-						<th class="red">299.99</th>
-						<th><a href="#">删除</a></th>
-					</tr>
+				
 				</tbody>
 			</table>
 

@@ -23,6 +23,7 @@ public class ProductController {
 		System.err.println(categoryId);
 		List<Product> list = productService.selectBycategoryId(categoryId);
 		model.addAttribute("list", list);
+		
 		return  "product_list";
 		
 	}

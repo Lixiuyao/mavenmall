@@ -1,6 +1,8 @@
 package com.situ.mall.core.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class OrderItemServiceImpl implements IOrderItemService {
 	@Override
 	public void addOrderItem(OrderItem orderItem) {
 		orderItemMapper.insertSelective(orderItem);
+	}
+
+	@Override
+	public List<OrderItem> selectByOrderNo(Long orderNo) {
+		return orderItemMapper.selectByOrderNo(orderNo);
 	}
 	
 }

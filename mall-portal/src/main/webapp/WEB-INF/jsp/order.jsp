@@ -24,11 +24,14 @@
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来靓淘<a href="login.html" target="_blank" id="user" value="${user.id}">${user.username}</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >您好！，欢迎来靓淘
+			<a href="login.html" target="_blank" id="user" value="${user.id}">${user.username}</a> <a href="register.html" target="_blank"> 退出</a></div>
+		
+			 
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
-						<div class="nav"><i class="pc-top-icon"></i><a href="#">我的订单</a></div>
+						<div class="nav"><i class="pc-top-icon"></i><a href="${ctx}/order/allOrder.shtml">我的订单</a></div>
 						<div class="con">
 							<dl>
 								<dt><a href="">批发进货</a></dt>
@@ -83,7 +86,7 @@
 		</div>
 		<div class="fr pc-head-car">
 			<i class="icon-car"></i>
-			<a href="#">我的购物车</a>
+			<a href="${ctx}/cart/getCartPage.shtml">我的购物车</a>
 		</div>
 	</div>
 	<!--  顶部    start-->

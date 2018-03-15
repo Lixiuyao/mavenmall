@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -100,9 +101,25 @@ public class OrderController {
 		
 	}
 	@RequestMapping("/getpay")
-	public String getpay(){
-		
+	public String getpay(HttpSession session,Model model){
+		User user = (User) session.getAttribute(Const.CURRENT_USER);
+		model.addAttribute("user", user);
+		//Order order =orderService.selectOrderByUserId(user.getId()); 
+		//List<OrderItem> orderItem = orderItemService.selectByOrderNo(order.getOrderNo());
+		//model.addAttribute("orderItem", orderItem);
 		return "my-pay";
+		
+	}
+	@RequestMapping("/allOrder")
+	public String allOrder(HttpSession session,Model model){
+		User user = (User) session.getAttribute(Const.CURRENT_USER);
+		model.addAttribute("user", user);
+		List<Order> list = orderService.selectByUserId(user.getId());
+		for (Order order : list) {
+			System.err.println(order);
+		}
+		model.addAttribute("list", list);
+		return "my-dingdan";
 		
 	}
 	public static void main(String[] args) {

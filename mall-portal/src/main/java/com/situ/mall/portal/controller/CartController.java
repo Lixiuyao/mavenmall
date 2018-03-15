@@ -168,6 +168,7 @@ public class CartController {
 			}
 			List<CartItemVo> cartItemVos = cartVo.getCartItemVos();
 			if (isChecked == true) {
+				
 				for (CartItemVo cartItemVo : cartItemVos) {
 					cartItemVo.setIsChecked(Const.CartChecked.CHECKED);
 				}	
