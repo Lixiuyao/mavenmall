@@ -236,7 +236,7 @@
 		</div>
 		<div class="member-right fr">
 			<div class="member-head">
-				<div class="member-heels fl"><h2>我的订单</h2></div>
+				<div class="member-heels fl"><h2><a href="${ctx}/order/allOrder.shtml"></a>我的订单</h2></div>
 				<div class="member-backs member-icons fr"><a href="#">搜索</a></div>
 				<div class="member-about fr"><input placeholder="商品名称/商品编号/订单编号" type="text"></div>
 			</div>
@@ -270,23 +270,25 @@
 							
 								<div class="member-minute clearfix">
 									<span>2015-09-22 18:22:33</span>
-									<span>订单号：<em>98653056821</em></span>
+									<span>订单号：<em>${order.orderNo}</em></span>
 									<span><a href="#">以纯甲醇旗舰店</a></span>
 									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
 								</div>
 								<div class="member-circle clearfix">
 									<div class="ci1">
 										<c:forEach items="${order.orderItems}" var="orderitem"> 
+										<c:if test="${orderitem.orderNo==order.orderNo}">
 										<div class="ci7 clearfix">
 											<span class="gr1"><a href="#"><img src="/pic/${orderitem.productImage}" title="" about="" width="60" height="60"></a></span>
 											<span class="gr2"><a href="#">${orderitem.productName} </a></span>
 											<span class="gr3">X1</span>
 										</div>
+										</c:if>
 									    </c:forEach>
 									</div>
 									<div class="ci2">张子琪</div>
 									<div class="ci3"><b>${order.payment}</b><p>货到付款</p><p class="iphone">手机订单</p></div>
-									<div class="ci4"><p>￥{order。createTime}</p></div>
+									<div class="ci4"><p>${order.createTime}</p></div>
 									<div class="ci5"><p>等待付款</p> <p><a href="#">物流跟踪</a></p> <p><a href="#">订单详情</a></p></div>
 									<div class="ci5 ci8"><p>剩余15时20分</p> <p><a href="#" class="member-touch">立即支付</a> </p> <p><a href="#">取消订单</a> </p></div>
 								</div>

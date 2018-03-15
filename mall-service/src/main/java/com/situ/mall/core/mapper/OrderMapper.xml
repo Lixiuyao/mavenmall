@@ -27,8 +27,9 @@
  		<collection property="orderItems" ofType="com.situ.mall.core.entity.OrderItem">
  			<id property="productName" column="product_name"/>
  			<result property="productImage" column="product_image"/>
+ 			<result property="orderNo" column="Border_no"/>
  			<result property="currentUnitPrice" column="current_unit_price"/>
- 			<result property="quantity" column="b.quantity"/>
+ 			<result property="quantity" column="quantity"/>
  		</collection>
  	</resultMap>
   <sql id="Base_Column_List" >
@@ -37,9 +38,9 @@
   </sql>
   <select id="selectByUserrId" parameterType="int" resultMap="BaseResultVo">
   		SELECT o.order_no ,o.create_time,o.payment,
-  		b.product_name,b.product_image,b.current_unit_price,
+  		b.product_name,b.product_image,b.current_unit_price,b.order_no as Border_no,
   		b.quantity FROM order1 AS o  
-  		INNER JOIN order_item AS b WHERE o.user_id=#{user_id};
+  		INNER JOIN order_item AS b ON o.order_no=b.order_no  WHERE o.user_id=#{user_id};
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

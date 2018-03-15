@@ -70,22 +70,25 @@ public class OrderController {
 		//3.从cookie中得到购物车CartVo
 		CartVo cartVo= Common.getCartVoFromCookie(request);
 		List<CartItemVo> cartItemVos = cartVo.getCartItemVos();
+	
 		for (CartItemVo cartItemVo : cartItemVos) {
-			OrderItem orderItem = new OrderItem();
-			orderItem.setOrderNo(order.getOrderNo());
-			orderItem.setUserId(user.getId());
-			Product product = productService.selectById(cartItemVo.getProduct().getId());
-			orderItem.setProductId(product.getId());
-			orderItem.setProductName(product.getName());
-			orderItem.setProductImage(product.getMainImage());
-			orderItem.setCurrentUnitPrice(product.getPrice());
-			orderItem.setQuantity(cartItemVo.getAmount());
-			orderItem.setTotalPrice(totalprice);
-			orderItem.setCreateTime(new Date());
-			orderItem.setUpdateTime(new Date());
-			orderItemService.addOrderItem(orderItem);
-			
-		}
+			//购物车里面被选中的才加入数据库
+			if (cartItemVo.getIsChecked() == Const.CartChecked.CHECKED) {
+				OrderItem orderItem = new OrderItem();
+				orderItem.setOrderNo(order.getOrderNo());
+				orderItem.setUserId(user.getId());
+				Product product = productService.selectById(cartItemVo.getProduct().getId());
+				orderItem.setProductId(product.getId());
+				orderItem.setProductName(product.getName());
+				orderItem.setProductImage(product.getMainImage());
+				orderItem.setCurrentUnitPrice(product.getPrice());
+				orderItem.setQuantity(cartItemVo.getAmount());
+				orderItem.setTotalPrice(totalprice);
+				orderItem.setCreateTime(new Date());
+				orderItem.setUpdateTime(new Date());
+				orderItemService.addOrderItem(orderItem);
+			}
+			}
 	      //4.遍历cartVo将所有isChecked是1的删除，然后再写到cookie
 		Iterator<CartItemVo> iterator = cartItemVos.iterator();
 		while (iterator.hasNext()) {
