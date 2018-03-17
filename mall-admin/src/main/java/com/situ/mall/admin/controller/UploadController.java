@@ -13,7 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.qiniu.common.QiniuException;
+import com.qiniu.common.Zone;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
 import com.situ.mall.conmon.until.JsonUtils;
+import com.situ.mall.conmon.until.QiniuUtil;
 
 @Controller
 @RequestMapping("/upload")
@@ -22,6 +31,23 @@ public class UploadController {
 	@RequestMapping(value="/uploadPic",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> uploadPic(MultipartFile pictureFile){
+		String fileName ="";
+		try {
+			fileName = QiniuUtil.uploadImage(pictureFile.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("fileName", fileName);
+		map.put("url",QiniuUtil.getUrl(fileName));
+		return map;
+	}
+	
+	
+	private String uploadByLocal(MultipartFile pictureFile) {
 		//为了防止文件重名（重名文件会覆盖丢失）,所以生成一个不重复的随机的名字dcf38fd6925c44528d6c402d02c04d7b
 		String name = UUID.randomUUID().toString().replace("-", "");
 		System.out.println(pictureFile);
@@ -36,12 +62,7 @@ public class UploadController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		String url = "/pic/"+fileName;
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("fileName", fileName);
-		map.put("url", url);
-		return map;
+		return fileName;
 	}
 	@RequestMapping(value="/multPicUpload",method=RequestMethod.POST)
 	@ResponseBody

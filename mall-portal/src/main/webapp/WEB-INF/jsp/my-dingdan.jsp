@@ -286,7 +286,7 @@
 										</c:if>
 									    </c:forEach>
 									</div>
-									<div class="ci2">张子琪</div>
+									<div class="ci2">${order.receiverName}</div>
 									<div class="ci3"><b>${order.payment}</b><p>货到付款</p><p class="iphone">手机订单</p></div>
 									<div class="ci4"><p>${order.createTime}</p></div>
 									<div class="ci5"><p>等待付款</p> <p><a href="#">物流跟踪</a></p> <p><a href="#">订单详情</a></p></div>

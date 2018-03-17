@@ -21,6 +21,11 @@
     from category
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="getCategoryCountAnalysis" resultType="com.situ.mall.core.vo.CategoryCountVo">
+  	SELECT c.name as name ,COUNT(*) as count   
+  	from product as p inner join  category as c on p.category_id=c.id GROUP by p.category_id   
+  </select>
+  
   <select id="selectTopCategory" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />

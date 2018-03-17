@@ -67,6 +67,12 @@
                             <span class="nav-label">商品分类</span>
                         </a>
                     </li>
+                     <li>
+                        <a class="J_menuItem" href="${ctx}/order/getorderpage.action">
+                            <i class="fa fa-home"></i>
+                            <span class="nav-label">订单总览</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="#">
                             <i class="fa fa fa-bar-chart-o"></i>
@@ -75,7 +81,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="graph_echarts.html">百度ECharts</a>
+                                <a class="J_menuItem" href="${ctx}/category/getCountAnalysisPage.action">商品分类统计</a>
                             </li>
                             <li>
                                 <a class="J_menuItem" href="graph_flot.html">Flot</a>
@@ -455,7 +461,7 @@
                 </nav>
             </div>
             <div class="row J_mainContent" id="content-main">
-                <iframe id="J_iframe" width="100%" height="100%" src="index_v1.html?v=4.0" frameborder="0" data-id="index_v1.html" seamless></iframe>
+                <iframe id="J_iframe" width="100%" height="100%" src="${ctx}/static/back/img/主页3.jpg" frameborder="0" data-id="index_v1.html" seamless></iframe>
             </div>
         </div>
         <!--右侧部分结束-->

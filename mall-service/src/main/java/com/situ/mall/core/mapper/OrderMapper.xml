@@ -23,7 +23,8 @@
  		<id property="orderNo" column="order_no"/>
  		<result property="payment" column="payment"/>
  		<result property="createTime" column="create_time"/>
- 		<!-- collection:将关联查询出的学生信息映射到集合中 -->
+ 		<result property="receiverName" column="receiverName"/>
+ 		<!-- collection:将关联查询出的信息映射到集合中 -->
  		<collection property="orderItems" ofType="com.situ.mall.core.entity.OrderItem">
  			<id property="productName" column="product_name"/>
  			<result property="productImage" column="product_image"/>
@@ -31,17 +32,25 @@
  			<result property="currentUnitPrice" column="current_unit_price"/>
  			<result property="quantity" column="quantity"/>
  		</collection>
+ 		
  	</resultMap>
   <sql id="Base_Column_List" >
     id, order_no, user_id, shipping_id, payment, payment_type, postage, status, payment_time, 
     send_time, end_time, close_time, create_time, update_time
   </sql>
   <select id="selectByUserrId" parameterType="int" resultMap="BaseResultVo">
-  		SELECT o.order_no ,o.create_time,o.payment,
-  		b.product_name,b.product_image,b.current_unit_price,b.order_no as Border_no,
+  		SELECT o.order_no ,o.create_time,o.payment,s.receiver_name AS receiverName,
+  		b.product_name,b.product_image,b.current_unit_price,b.order_no AS Border_no,
   		b.quantity FROM order1 AS o  
-  		INNER JOIN order_item AS b ON o.order_no=b.order_no  WHERE o.user_id=#{user_id};
+  		INNER JOIN order_item AS b ON o.order_no=b.order_no INNER JOIN shipping AS s ON o.shipping_id = s.id
+ 		WHERE o.user_id=#{userid} ORDER  BY o.id DESC;
   </select>
+  <select id="selectAllOrder" resultType="com.situ.mall.core.entity.Order">
+  	SELECT o.id as id,u.username as username,order_no as orderNo,payment as payment,o.create_time as createTime FROM order1 
+  	AS o INNER JOIN USER AS u 
+  	ON o.user_id=u.id;
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

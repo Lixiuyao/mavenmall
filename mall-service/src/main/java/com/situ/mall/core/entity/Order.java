@@ -35,38 +35,41 @@ public class Order implements Serializable {
     private Date updateTime;
     
     private List<OrderItem> orderItems;
-    private static final long serialVersionUID = 1L;
-
-   
-
-    public Order(Integer id, Long orderNo, Integer userId, Integer shippingId, BigDecimal payment, Integer paymentType,
-			Integer postage, Integer status, Date paymentTime, Date sendTime, Date endTime, Date closeTime,
-			Date createTime, Date updateTime, List<OrderItem> orderItems) {
-		super();
-		this.id = id;
-		this.orderNo = orderNo;
-		this.userId = userId;
-		this.shippingId = shippingId;
-		this.payment = payment;
-		this.paymentType = paymentType;
-		this.postage = postage;
-		this.status = status;
-		this.paymentTime = paymentTime;
-		this.sendTime = sendTime;
-		this.endTime = endTime;
-		this.closeTime = closeTime;
-		this.createTime = createTime;
-		this.updateTime = updateTime;
-		this.orderItems = orderItems;
+    
+    private String receiverName;
+    
+    private String username;
+    public String getUsername() {
+		return username;
 	}
 
-	public List<OrderItem> getorderItems() {
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}
 
-	public void setorderItems(List<OrderItem> orderItems) {
+	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
+
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+
+	private static final long serialVersionUID = 1L;
+
+    
+
+ 
+
+	
 
 	public Order() {
         super();
@@ -189,9 +192,10 @@ public class Order implements Serializable {
 		return "Order [id=" + id + ", orderNo=" + orderNo + ", userId=" + userId + ", shippingId=" + shippingId
 				+ ", payment=" + payment + ", paymentType=" + paymentType + ", postage=" + postage + ", status="
 				+ status + ", paymentTime=" + paymentTime + ", sendTime=" + sendTime + ", endTime=" + endTime
-				+ ", closeTime=" + closeTime + ", createTime=" + createTime + ", updateTime=" + updateTime + ", list="
-				+ orderItems + "]";
+				+ ", closeTime=" + closeTime + ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ ", orderItems=" + orderItems + ", receiverName=" + receiverName + ", username=" + username + "]";
 	}
+
 	
 
 }

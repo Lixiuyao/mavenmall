@@ -26,9 +26,6 @@
 	</c:forEach>
 
 	<div>
-		
-			
-		
 	</div>
 	<script type="text/javascript" src="${ctx}/static/lib/jquery/jquery.form.js"></script>
 </body>

@@ -648,9 +648,10 @@
 		 $('#totalTwoPrice').html(totalprice)
 	
 		function addOrder() {
+			 var total = $("#totalPrice").html();
    			$.ajax({
    				url:'${ctx}/order/addOrder.shtml',
-   				data:{'shippingId':'${shipping.id}','totalprice':$("#totalPrice").html()},
+   				data:{'shippingId':'${shipping.id}','totalprice':total},
    				dataType:'json',
    				type:"POST",
    				success:function(data){

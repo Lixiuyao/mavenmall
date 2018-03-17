@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,6 +13,7 @@ import com.situ.mall.conmon.response.ServerResponse;
 import com.situ.mall.core.entity.Category;
 import com.situ.mall.core.mapper.CategoryMapper;
 import com.situ.mall.core.service.ICategoryService;
+import com.situ.mall.core.vo.CategoryCountVo;
 @Controller
 @RequestMapping("/category")
 public class CatergoryController {
@@ -19,6 +21,7 @@ public class CatergoryController {
 	private ICategoryService categoryService;
 	@Autowired
 	private CategoryMapper categoryMapper;
+	
 	@RequestMapping(value="/selectTopCategory")
 	@ResponseBody
 	public ServerResponse selectTopCategory(){
@@ -63,10 +66,23 @@ public class CatergoryController {
 		if (category.getName()==null&&category.getName()=="") {
 			return ServerResponse.createError("名字不能为空或者是不规则语言");
 		}
-	
 		return categoryService.add(category);
-		
 	}
 	
+	@RequestMapping("/getCountAnalysisPage")
+	public String getCountAnalysisPage(){
+		return "category_count_Ecarts";
+	}
+	
+	@RequestMapping("/getCategoryCountAnalysis")
+	@ResponseBody
+	public  ServerResponse getCategoryCountAnalysis(){
+		List<CategoryCountVo> list =categoryService.getCategoryCountAnalysis();
+
+		if (list==null) {
+			return ServerResponse.createError("查询失败或者没有此数据");
+		}
+		return ServerResponse.createSuccess("查询成功", list);
+	}
 	
 }

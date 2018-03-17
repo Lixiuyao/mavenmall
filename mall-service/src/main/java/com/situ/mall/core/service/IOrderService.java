@@ -11,5 +11,7 @@ public interface IOrderService {
 	Order selectOrderByUserId(Integer id);
 
 	List<Order> selectByUserId(Integer id);
+
+	List<Order> selectAllOrder();
 	
 }

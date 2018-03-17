@@ -127,13 +127,14 @@
 		$(function(){
 			//加载一级菜单
 			$.ajax({
-				url:"${ctx}/catergory/selectTopCategory.action",
+				url:"${ctx}/category/selectTopCategory.action",
+				type:'POST',
 				dataType:'json',
-				success:function(data){
-					console.log(data);
-					if(data.code==util.SUCCESS){
+				success:function(jsonObj){
+					console.log(jsonObj);
+					if(jsonObj.code==util.SUCCESS){
 						 var html ='<option value="">请选一级分类</option>';
-						 var data = data.data;
+						 var data = jsonObj.data;
 						 for(var i=0;i<data.length;i++){
 							 html +='<option value="'+data[i].id+'">'+data[i].name+'</option>';
 						 }

@@ -45,10 +45,7 @@ public class OrderController {
 	public ServerResponse addOrder(HttpSession session,
 			Integer shippingId,BigDecimal totalprice,
 			Integer paytype,Integer postage,HttpServletRequest request ,HttpServletResponse response) {
-		/*System.err.println(shippingId);
-		System.err.println(totalprice);
-		System.err.println(paytype);
-		System.err.println(postage);*/
+	
 		//1.创建订单对象
 		Order order = new Order();
 		//设置当前时间为订单编号
@@ -70,7 +67,6 @@ public class OrderController {
 		//3.从cookie中得到购物车CartVo
 		CartVo cartVo= Common.getCartVoFromCookie(request);
 		List<CartItemVo> cartItemVos = cartVo.getCartItemVos();
-	
 		for (CartItemVo cartItemVo : cartItemVos) {
 			//购物车里面被选中的才加入数据库
 			if (cartItemVo.getIsChecked() == Const.CartChecked.CHECKED) {
