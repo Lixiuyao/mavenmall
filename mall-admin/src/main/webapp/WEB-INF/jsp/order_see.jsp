@@ -21,12 +21,10 @@
 		    cellMinWidth: 50, //列宽自动分配，全局定义常规单元格的最小宽度
 		    cols: [[
 		      {field:'productName', title: '商品信息', sort: true},
+		      {field:'productImage', title: '商品主图', templet: '#imgTpl'},
 		      {field:'currentUnitPrice', title: '单价', sort: true},
 		      {field:'quantity', title: '数量', sort: true},
-		      {field:'totalPrice', title: '总价格', sort: true},
-		      {field:'createTime', title: '订单创建时间', sort: true},
 		    ]],
-		    page: true,
 		    id:"listReload" //设定容器唯一ID，id值是对表格的数据操作方法上是必要的传递条件，它是表格容器的索引
 		  });
 		  var $=layui.$;
@@ -134,6 +132,9 @@
 				  });
 				});
 		</script> 
+		<script type="text/html" id="imgTpl">
+  			<img src="/pic/{{d.productImage}}">
+		</script>
 		<script type="text/html" id="rolrTpl">
   			{{#       if(d.role ==1 ){  }}
 				   	  <button class="layui-btn layui-btn-danger" >管理员</button>

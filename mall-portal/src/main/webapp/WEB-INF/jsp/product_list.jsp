@@ -74,7 +74,7 @@
 									 <c:if test="${fn:length(product.name)>15}">
 									<p>${fn:substring(product.name, 0, 15)}...</p>
 									</c:if>
-									<c:if test="${fn:length(product.name)<=8}">
+									<c:if test="${fn:length(product.name)<=8}"> 
 									<p>${product.name}</p>
 									</c:if>	
 									

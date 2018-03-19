@@ -36,7 +36,7 @@
 		<!-----------------------2.logo-------------------->
 		<div class="logo_center">
 			<div class="left">
-				<img class="logo_img" src="${ctx}/static/front/img/LOGO.png" />
+			<a href="${ctx}/product/getProductListPage.shtml"><img class="logo_img" src="${ctx}/static/front/img/LOGO.png" /></a>	
 			</div>
 			<div class="center">
 				<input class="btn1" type="text" value="洗面奶" />

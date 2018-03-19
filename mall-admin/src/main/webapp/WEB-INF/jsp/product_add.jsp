@@ -101,7 +101,7 @@
 				console.log(data.value); //得到被选中的值
 				console.log(data.othis); //得到美化后的DOM对象
 				$.ajax({
-					url:'${ctx}/catergory/selectSecondCategory.action',
+					url:'${ctx}/category/selectSecondCategory.action',
 					data : 'topCategoryId=' + data.value,
 					dataType:'json',
 					type:'POST',
